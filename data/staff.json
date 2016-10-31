@@ -1,0 +1,5 @@
+[
+	{"id":4,"name":"Roman Rogowski","day":"Tue","start":11,"end":13,"gender":"male","weekStartDate":"10/9/2016","hoursCapacity":7,"experienceLevel":3},
+	{"id":33,"name":"Ervin Wu","day":"Tue","start":12,"end":13,"gender":"male","weekStartDate":"9/18/2016","hoursCapacity":4,"experienceLevel":3},
+	{"id":34,"name":"Ervin Wu","day":"Tue","start":14,"end":15,"gender":"male","weekStartDate":"9/18/2016","hoursCapacity":4,"experienceLevel":3}
+]

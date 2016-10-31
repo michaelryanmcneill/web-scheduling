@@ -29,8 +29,8 @@ public class KarenBot {
     Staff staff;
 
     try {
-      week = DataIO.parseWeek("data/json/week.json", scenario);
-      staff = DataIO.parseStaff("data/json/staff.json", scenario);
+      week = DataIO.parseWeek("data/week.json", scenario);
+      staff = DataIO.parseStaff("data/staff.json", scenario);
     } catch (IOException e) {
       e.printStackTrace();
       System.exit(1);

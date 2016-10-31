@@ -1,0 +1,23 @@
+[
+	{"day":"Mon","hour":11,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Mon","hour":12,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Mon","hour":13,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Mon","hour":14,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Mon","hour":15,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Mon","hour":16,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Mon","hour":17,"numPeople":5,"weekStartDate":"10/9/2016"},
+	{"day":"Mon","hour":18,"numPeople":5,"weekStartDate":"10/9/2016"},
+	{"day":"Mon","hour":19,"numPeople":5,"weekStartDate":"10/9/2016"},
+	{"day":"Mon","hour":20,"numPeople":4,"weekStartDate":"10/9/2016"},
+
+	{"day":"Tue","hour":11,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Tue","hour":12,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Tue","hour":13,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Tue","hour":14,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Tue","hour":15,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Tue","hour":16,"numPeople":4,"weekStartDate":"10/9/2016"},
+	{"day":"Tue","hour":17,"numPeople":5,"weekStartDate":"10/9/2016"},
+	{"day":"Tue","hour":18,"numPeople":5,"weekStartDate":"10/9/2016"},
+	{"day":"Tue","hour":19,"numPeople":5,"weekStartDate":"10/9/2016"},
+	{"day":"Tue","hour":20,"numPeople":4,"weekStartDate":"10/9/2016"}
+]
