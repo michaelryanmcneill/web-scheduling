@@ -1,5 +1,8 @@
 package comp110;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class Week {
 
   private String _title;
@@ -103,6 +106,24 @@ public class Week {
     }
 
     return sb.toString();
+  }
+  
+  public JSONArray toJSON(String weekStartDate) {
+	  JSONArray json = new JSONArray();
+	  for (int day  = 0; day < _shifts.length; day++) {
+		  for (Shift shift : _shifts[day]) {
+			  if (shift.getCapacity() > 0) {
+				  // Add shift
+				  JSONObject shiftJSON = shift.toJSON(weekStartDate);
+				  if (shiftJSON.length() > 0) {
+					  json.put(shiftJSON);
+					  System.out.println(shift.toJSON(weekStartDate));
+				  }
+			  }
+		  }
+	  }
+	  
+	  return json;
   }
 
   public Week copy() {

@@ -3,7 +3,9 @@ package comp110;
 import static java.lang.System.out;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,6 +48,20 @@ public class KarenBot {
 
     // Output Results
     output(report);
+    
+    // Convert KarenBot output to JSON
+    Scorecard scorecard = report.getHigh();
+    Week schedule = scorecard.getSchedule().getWeek();
+    JSONArray json = schedule.toJSON(scenario);
+    
+    // Write JSON to karenbot.json
+    try {
+        PrintWriter writer = new PrintWriter("data/karenbot.json", "UTF-8");
+        writer.println(json.toString());
+        writer.close();
+    } catch (Exception e) {
+    	System.out.println("ERROR: Failed to write to karenbot.json");
+    }
   }
 
   private void verifyHours(Staff staff, Week week) {

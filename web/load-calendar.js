@@ -6,8 +6,9 @@ function configureScheduler() {
 	// Configure/initialize "scheduler" tool
 	scheduler.config.first_hour = 10;
 	scheduler.config.last_hour = 21;
-  	//scheduler.config.readonly = true;
+  	scheduler.config.readonly = true;
 	scheduler.config.drag_create = false;
+	scheduler.config.drag_resize = false;
 	scheduler.config.dblclick_create = false;
 	scheduler.config.delay_render = 30;
 	scheduler.config.select = false;
@@ -26,32 +27,6 @@ function filterMatch(worker_name, name_filter) {
 	return worker_name.toLowerCase().indexOf(name_filter.toLowerCase()) != -1;
 }
 
-// OBSOLETE: Deleting later...
-/*function constructHourRanges(hours) {
-	// Given an array of hours (e.g. [11, 12, 13, 15, 16]), construct contiguous
-	// hour ranges (e.g. [{start: 11, end: 13}, {start: 15, end: 16}])
-	var hour_ranges = [];
-	hours.sort();
-	var current_hour = hours[0];
-	var current_block = {start: current_hour, end: current_hour + 1}
-	for (i = 1; i < hours.length; i++) {
-		current_hour = hours[i];
-		if (current_hour - current_block.end !== 0) {
-			// Non-contiguous hour - push current block and create a new block
-			hour_ranges.push(current_block)
-			current_block = {start: current_hour, end: current_hour + 1};
-		} else {
-			// Contiguous hour - update current block
-			current_block.end = current_hour + 1;
-		}
-	}
-
-	// Add the current block we were working on
-	hour_ranges.push(current_block);
-
-	return hour_ranges;
-}
-
 function constructWorkerData(worker_name, date, hour_ranges) {
 	// Build JSON to be used by 'scheduler' for this worker
 	var data = [];
@@ -63,7 +38,7 @@ function constructWorkerData(worker_name, date, hour_ranges) {
 			end_date: date + ' ' + hour_range.end
 		});
 	}
-	
+
 	return data;
 }
 
@@ -74,38 +49,7 @@ function renderDaySchedule(day, date, name_filter) {
 		// Filter by name
 		var worker_name = workers[i];
 		if (name_filter && ! filterMatch(worker_name, name_filter)) continue;
-		
-		// Render this worker's day in scheduler
-		var hours = day[worker_name];
-		var hour_ranges = constructHourRanges(hours);
-		var data = constructWorkerData(worker_name, date, hour_ranges);
-		scheduler.parse(data, 'json');
-	}
-}*/
 
-function constructWorkerData(worker_name, date, hour_ranges) {
-	// Build JSON to be used by 'scheduler' for this worker
-	var data = [];
-	for (var i = 0; i < hour_ranges.length; i++) {
-		var hour_range = hour_ranges[i];
-		data.push({
-			text: worker_name,
-			start_date: date + ' ' + hour_range.start,
-			end_date: date + ' ' + hour_range.end
-		});
-	}
-	
-	return data;
-}
-
-function renderDaySchedule(day, date, name_filter) {
-	// Iterate over each worker scheduled for this day
-	var workers = Object.keys(day || {});
-	for (var i = 0; i < workers.length; i++) {
-		// Filter by name
-		var worker_name = workers[i];
-		if (name_filter && ! filterMatch(worker_name, name_filter)) continue;
-		
 		// Render this worker's day in scheduler
 		var hour_ranges = day[worker_name];
 		var data = constructWorkerData(worker_name, date, hour_ranges);
@@ -121,7 +65,7 @@ function renderWeekSchedule(week, weekStartDate, name_filter) {
 		var day = week[DAYS_OF_WEEK[i]];
 		var date = new Date(start_date);
 		date.setDate(date.getDate() + i);
-		
+
 		// Date is now a string!
 		date = date.toLocaleDateString();
 		renderDaySchedule(day, date, name_filter);
@@ -138,6 +82,7 @@ function renderAllSchedules(name_filter) {
 	// Render each week in this schedule
 	var weekStartDates = Object.keys(ALL_SCHEDULES);
 	for (var i = 0; i < weekStartDates.length; i++) {
+		console.log(i);
 		var weekStartDate = weekStartDates[i];
 		var week = ALL_SCHEDULES[weekStartDate];
 		renderWeekSchedule(week, weekStartDate, name_filter);
@@ -162,7 +107,6 @@ function buildSchedulesFromDatabaseJSON(database_json) {
 			ALL_SCHEDULES[weekStartDate][day][name] = [];
 		ALL_SCHEDULES[weekStartDate][day][name].push({start: start, end: end});
 	}
-    console.log(ALL_SCHEDULES);
 }
 
 $(document).ready(function() {
@@ -180,6 +124,7 @@ $(document).ready(function() {
 		renderAllSchedules();
 	});
 
+	// Example of structure of JSON; uncomment to run on hardcoded data
 	/*var database_json = [
 		{weekStartDate: '10/2/2016', day: 'Sun', name: 'Billy', start: 11, end: 13},
 		{weekStartDate: '10/2/2016', day: 'Sun', name: 'Billy', start: 17, end: 19},

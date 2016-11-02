@@ -1,30 +1,30 @@
 var workableHours =
     {
-	"name":"Ervin Wu",
+	"name":"COMP 110 LA",
 	"gender": "male",
 	"experience_level": 3,
 	"hours_capacity": 4,
-	"week_start_date":"9/18/2016",
+	"week_start_date":"11/6/2016",
 	"day":"Mon",
 	"start":11,
 	"end":13};
 
 var Profile = {
-    "name":"Ervin Wu",
+    "name":"COMP 110 LA",
 	"gender": "male",
 	"experience_level": 3,
 	"hours_capacity": 4,
-	"week_start_date":"9/18/2016",
+	"week_start_date":"11/6/2016",
 };
 
 var Profile = React.createClass({
     getInitialState : function() {
         return {
-    "name":"Ervin Wu",
+    "name":"COMP 110 LA",
 	"gender": "male",
 	"experience_level": 3,
 	"hours_capacity": 4,
-	"week_start_date":"9/18/2016",
+	"week_start_date":"11/6/2016",
         };
     },
 
@@ -108,20 +108,20 @@ var HourSelectTable = React.createClass({
             this.state.calendarHours[day.toString()]["_"+time.toString()]  =
                 (this.state.calendarHours[day.toString()]["_"+time.toString()])? false: true;
             this.forceUpdate();
-            alert(this.state.calendarHours[day.toString()]["_"+time.toString()]);
+            //alert(this.state.calendarHours[day.toString()]["_"+time.toString()]);
     },
     clickHelper: function(i,day){
         if(i<12){
             return this.state.calendarHours[day.toString()]["_"+i.toString()+"am"];
-//                     alert(day.toString() + ": " + this.state.calendarHours[day.toString()]["_"+i.toString()+"am"]
+//                     //alert(day.toString() + ": " + this.state.calendarHours[day.toString()]["_"+i.toString()+"am"]
 //                          + " Hour: " + i +"am");
                 } else if(i==12){
                     return this.state.calendarHours[day.toString()]["_"+(i).toString()+"pm"];
-//                    alert(day.toString() + ": " + this.state.calendarHours[day.toString()]["_"+(i).toString()+"pm"]
+//                    //alert(day.toString() + ": " + this.state.calendarHours[day.toString()]["_"+(i).toString()+"pm"]
 //                          + " Hour: " + (i)+"pm" );
                 }else if(i<21){
                     return this.state.calendarHours[day.toString()]["_"+(i-12).toString()+"pm"];
-//                    alert(day.toString() + ": " + this.state.calendarHours[day.toString()]["_"+(i-12).toString()+"pm"]
+//                    //alert(day.toString() + ": " + this.state.calendarHours[day.toString()]["_"+(i-12).toString()+"pm"]
 //                          + " Hour: " + (i-12)+"pm" );
                 }
     },
@@ -134,11 +134,11 @@ var HourSelectTable = React.createClass({
                     if(this.clickHelper(i,day)){
                         if(!this.clickHelper((i-1),day)){
                             _start=i;
-                            alert("I am the alpha: " + _start);
+                            //alert("I am the alpha: " + _start);
                         }
                         if(!this.clickHelper(i+1,day)){
                             _end = ++i;
-                            alert("I am the omega: " + _end);
+                            //alert("I am the omega: " + _end);
                             shifts.push({
                                 //id: workableHours.id,
                                 name: workableHours.name,
@@ -167,10 +167,10 @@ var HourSelectTable = React.createClass({
         	data: JSON.stringify(shifts),
         	dataType: 'json',
         	success: function() {
-        		alert('yay')
+        		alert('Success');
         	}
         });
-        alert("The day is: " + shifts[0].day);
+        //alert("The day is: " + shifts[0].day);
     },
     render: function(){
         return(

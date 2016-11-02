@@ -1,9 +1,13 @@
 package comp110;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.json.JSONObject;
 
 public class Shift extends HashSet<Employee> {
 
@@ -39,6 +43,22 @@ public class Shift extends HashSet<Employee> {
   public String toString() {
     List<String> names = this.stream().map(e -> e.getName()).collect(Collectors.toList());
     return String.format("%02d", _hour) + ": " + String.join(", ", names);
+  }
+  
+  public JSONObject toJSON(String weekStartDate) {
+	  JSONObject json = new JSONObject();
+	  ArrayList<String> days = new ArrayList<>(Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri"));
+	  Iterator<Employee> employees = super.iterator();
+	  while (employees.hasNext()) {
+		  Employee e = employees.next();
+		  json.put("weekStartDate", weekStartDate);
+		  json.put("day", days.get(_day));
+		  json.put("name", e.getName());
+		  json.put("start", _hour);
+		  json.put("end", _hour + 1);  
+	  }
+	  
+	  return json;
   }
 
   public boolean equals(Shift other) {
