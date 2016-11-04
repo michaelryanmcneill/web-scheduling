@@ -14,10 +14,18 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="day" type="varchar(255)"/>
-            <column name="start" type="integer"/>
-            <column name="weekstartdate" type="varchar(255)"/>
-            <column name="end" type="integer"/>
+            <column name="day" type="varchar(255)">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="start" type="integer">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="weekstartdate" type="varchar(255)">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="end" type="integer">
+                 <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <createTable tableName="LearningAssistants">
@@ -27,16 +35,30 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="day" type="varchar(255)"/>
-            <column name="start" type="integer"/>
-            <column name="weekstartdate" type="varchar(255)"/>
-            <column name="end" type="integer"/>
+            <column name="day" type="varchar(255)">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="start" type="integer">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="weekstartdate" type="varchar(255)">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="end" type="integer">
+                 <constraints nullable="false"/>
+            </column>
 
-            <column name="gender" type="varchar(255)"/>
+            <column name="gender" type="varchar(255)">
+                 <constraints nullable="false"/>
+            </column>
 
-            <column name="experiencelevel" type="integer"/>
+            <column name="experiencelevel" type="integer">
+                 <constraints nullable="false"/>
+            </column>
 
-            <column name="hourscapacity" type="integer"/>
+            <column name="hourscapacity" type="integer">
+                 <constraints nullable="false"/>
+            </column>
 
         </createTable>
 
@@ -46,11 +68,30 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="day" type="varchar(255)"/>
-            <column name="hour" type="integer"/>
-            <column name="numPeople" type="integer"/>
-            <column name="weekStartDate" type="varchar(255)"/>
+            <column name="day" type="varchar(255)">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="hour" type="integer">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="numPeople" type="integer">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="weekStartDate" type="varchar(255)">
+                 <constraints nullable="false"/>
+            </column>
         </createTable>
-
+        <createTable tableName="userTable">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                 <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(255)">
+                 <constraints nullable="false"/>
+            </column>
+          
+        </createTable>
     </changeSet>
 </databaseChangeLog>

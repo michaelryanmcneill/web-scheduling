@@ -14,7 +14,11 @@ import io.dropwizard.jersey.params.LongParam;
 import javax.ws.rs.PUT;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.PathParam;
+import com.example.helloworld.core.User;
+import io.dropwizard.auth.Auth;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 @Path("/people")
 @Produces(MediaType.APPLICATION_JSON)
 public class PeopleResource {
@@ -33,9 +37,7 @@ public class PeopleResource {
         }
        // return peopleDAO.create(person);
     }
-
- 
-
+    
     @GET
     @UnitOfWork
     public List<Person> listPeople() {

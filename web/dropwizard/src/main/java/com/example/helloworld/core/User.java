@@ -3,10 +3,28 @@ package com.example.helloworld.core;
 import java.security.Principal;
 import java.util.Set;
 
-public class User implements Principal {
-    private final String name;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import java.util.Objects;
+import io.dropwizard.Configuration;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.NotEmpty;
 
-    private final Set<String> roles;
+
+
+public class User implements Principal {
+    private  String name;
+   private  Set<String> roles;
+  
+
+   
+
 
     public User(String name) {
         this.name = name;
@@ -25,7 +43,7 @@ public class User implements Principal {
     public int getId() {
         return (int) (Math.random() * 100);
     }
-
+   
     public Set<String> getRoles() {
         return roles;
     }

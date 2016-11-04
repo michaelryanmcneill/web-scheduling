@@ -9,7 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
-
+import io.dropwizard.hibernate.UnitOfWork;
 /**
  * {@link RolesAllowed}, {@link PermitAll} are supported on the class level.<p>
  * Method level annotations take precedence over the class level ones

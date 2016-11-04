@@ -8,9 +8,11 @@ import com.example.helloworld.core.LA;
 import com.example.helloworld.core.Master;
 import com.example.helloworld.core.Template;
 import com.example.helloworld.core.User;
+import com.example.helloworld.core.User2;
 import com.example.helloworld.db.PersonDAO;
 import com.example.helloworld.db.LADAO;
 import com.example.helloworld.db.MasterDAO;
+import com.example.helloworld.db.UserDAO;
 import com.example.helloworld.filter.DateRequiredFeature;
 import com.example.helloworld.health.TemplateHealthCheck;
 import com.example.helloworld.resources.FilteredResource;
@@ -21,6 +23,7 @@ import com.example.helloworld.resources.LAResourceID;
 import com.example.helloworld.resources.PersonResource;
 import com.example.helloworld.resources.MasterResource;
 import com.example.helloworld.resources.ProtectedResource;
+import com.example.helloworld.resources.UserResource;
 import com.example.helloworld.resources.DefaultResource;
 import com.example.helloworld.resources.ViewResource;
 import com.example.helloworld.tasks.EchoTask;
@@ -37,10 +40,10 @@ import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
-
+import io.dropwizard.hibernate.UnitOfWorkAwareProxyFactory;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
-
+import org.hibernate.SessionFactory;
 import java.util.EnumSet;
 import java.util.Map;
 
@@ -53,7 +56,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
     }
 
     private final HibernateBundle<HelloWorldConfiguration> hibernateBundle =
-        new HibernateBundle<HelloWorldConfiguration>(Person.class, LA.class, Master.class) {
+        new HibernateBundle<HelloWorldConfiguration>(Person.class, LA.class, Master.class, User2.class) {
             @Override
             public DataSourceFactory getDataSourceFactory(HelloWorldConfiguration configuration) {
                 return configuration.getDataSourceFactory();
@@ -109,13 +112,19 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         final PersonDAO dao = new PersonDAO(hibernateBundle.getSessionFactory());
         final LADAO dao2 = new LADAO(hibernateBundle.getSessionFactory());
         final MasterDAO dao3 = new MasterDAO(hibernateBundle.getSessionFactory());
+        final UserDAO dao4 = new UserDAO(hibernateBundle.getSessionFactory());
         final Template template = configuration.buildTemplate();
-
+         final ExampleAuthenticator authenticator
+                = new UnitOfWorkAwareProxyFactory(hibernateBundle)
+                .create(ExampleAuthenticator.class,
+                        new Class<?>[]{UserDAO.class, SessionFactory.class},
+                        new Object[]{dao4,
+                            hibernateBundle.getSessionFactory()});
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
         environment.admin().addTask(new EchoTask());
         environment.jersey().register(DateRequiredFeature.class);
         environment.jersey().register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<User>()
-                .setAuthenticator(new ExampleAuthenticator())
+                .setAuthenticator(authenticator)
                 .setAuthorizer(new ExampleAuthorizer())
                 .setRealm("SUPER SECRET STUFF")
                 .buildAuthFilter()));
@@ -129,6 +138,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         environment.jersey().register(new LAResource(dao2));
         environment.jersey().register(new LAResourceID(dao2));
         environment.jersey().register(new MasterResource(dao3));
+        environment.jersey().register(new UserResource(dao4));
         environment.jersey().register(new DefaultResource());
         environment.jersey().register(new FilteredResource());
     }

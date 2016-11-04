@@ -1,5 +1,5 @@
 package com.example.helloworld.core;
-
+import javax.validation.constraints.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,19 +23,19 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    
     @Column(name = "name", nullable = false)
     private String name;
-
+    
     @Column(name = "weekstartdate", nullable = false)
     private String weekstartdate;
-
+    
     @Column(name = "day", nullable = false)
     private String day;
-
+    
     @Column(name = "start", nullable = false)
     private int start;
-
+    
     @Column(name = "end", nullable = false)
     private int end;
 	
