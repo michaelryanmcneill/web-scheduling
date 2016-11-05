@@ -39,22 +39,26 @@ public class ExampleAuthenticator implements Authenticator<BasicCredentials, Use
    @UnitOfWork
     @Override
     public Optional<User> authenticate(BasicCredentials credentials) throws AuthenticationException {
-          Session session = sessionFactory.openSession();
-         Optional<User2> result;
+        Session session = sessionFactory.openSession();
+        Optional<User2> result;
+            
             try {
             ManagedSessionContext.bind(session);
-            result = userDAO.findRole(credentials.getUsername());
+            result = userDAO.findRole(credentials.getUsername(), credentials.getPassword());
             // String role = result.get().getRole();
-            
-             if (VALID_USERS.containsKey(result.get().getRole()) && "secret".equals(credentials.getPassword())) {
-            return Optional.of(new User(result.get().getRole(), VALID_USERS.get(result.get().getRole())));
-       }
+            if(!result.isPresent()){
+                return Optional.empty();
+            }else if(VALID_USERS.containsKey(result.get().getRole()) && result.get().getPassword().equals(credentials.getPassword())) {
+                return Optional.of(new User(result.get().getRole(), VALID_USERS.get(result.get().getRole())));
+            }else{
+              return Optional.empty();
+            }
     //    if (VALID_USERS.containsKey(role) && "secret".equals(credentials.getPassword())) {
     //        return Optional.of(new User(role, VALID_USERS.get(role)));
     //    }else{
 
     //    }
-return Optional.empty();
+     
         } catch (Exception e) {
             throw new AuthenticationException(e);
         } finally {

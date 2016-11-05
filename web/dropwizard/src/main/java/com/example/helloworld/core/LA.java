@@ -1,5 +1,4 @@
 package com.example.helloworld.core;
-import javax.validation.constraints.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,28 +23,28 @@ public class LA {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotNull
+  
     @Column(name = "name", nullable = false)
     private String name;
-    @NotNull
+
     @Column(name = "weekstartdate", nullable = false)
     private String weekstartdate;
-    @NotNull
+   
     @Column(name = "day", nullable = false)
     private String day;
-    @NotNull
+    
     @Column(name = "start", nullable = false)
     private int start;
-    @NotNull
+  
     @Column(name = "end", nullable = false)
     private int end;
-    @NotNull
+   
     @Column(name = "gender", nullable = false)
     private String gender;
-    @NotNull
+    
     @Column(name = "experiencelevel", nullable = false)
     private int experiencelevel;
-    @NotNull
+    
     @Column(name = "hourscapacity", nullable = false)
     private int hourscapacity;
 

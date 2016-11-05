@@ -17,8 +17,8 @@ import java.util.Objects;
                 name = "com.example.helloworld.core.User2.findAll",
                 query = "SELECT p FROM User2 p"
             ),@NamedQuery(
-                name = "com.example.helloworld.core.User2.name",
-                query = "SELECT p FROM User2 p where p.name = :name"
+                name = "com.example.helloworld.core.User2.nameandpassword",
+                query = "SELECT p FROM User2 p where p.name = :name "+ "and p.password = :password"
             )
         }
     )
@@ -31,13 +31,24 @@ public class User2  {
     private  String name;
     @Column(name = "role", nullable = false)
     private  String role;
+    @Column(name = "password", nullable = false)
+    private  String password;
 
     public User2(){
 
     }
-    public User2(String name, String role) {
+    public User2(String name, String role,String password) {
         this.name = name;
         this.role = role;
+        this.password = password;
+    }
+
+    public void setPassword(String password){
+        this.password= password;
+    }
+
+    public String getPassword(){
+        return password;
     }
 
     public void setName(String name){

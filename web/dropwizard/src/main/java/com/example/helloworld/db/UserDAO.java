@@ -35,10 +35,12 @@ public class UserDAO extends AbstractDAO<User2> {
         return list(namedQuery("com.example.helloworld.core.User2.findAll"));
     }
 
-    public Optional<User2> findRole(String x) {
+    public Optional<User2> findRole(String name, String password) {
         return Optional.ofNullable(
             uniqueResult(
-            namedQuery("com.example.helloworld.core.User2.name").setParameter("name", x)
+            namedQuery("com.example.helloworld.core.User2.nameandpassword")
+            .setParameter("name", name)
+            .setParameter("password", password)
                ));
     }
 

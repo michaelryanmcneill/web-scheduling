@@ -383,13 +383,13 @@ private boolean possibleHasGenderBalance(Employee toAdd, Employee toRemove, Shif
     return maleHours > femaleHours ? 1 : 0;
   }
 
-  public static void main(String[] args) {
+ /* public static void main(String[] args) {
 
     KarenBot karenBot = new KarenBot(new FXAlgo());
 
     karenBot.run("11/6/2016", 100);
 
-  }
+  }*/
 
   private void scheduleRemainingEmployees() {
     ArrayList<Employee> hasRemaining = getEmployeesWithRemainingCapacity();

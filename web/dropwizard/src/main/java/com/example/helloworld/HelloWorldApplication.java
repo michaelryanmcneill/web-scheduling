@@ -24,6 +24,7 @@ import com.example.helloworld.resources.PersonResource;
 import com.example.helloworld.resources.MasterResource;
 import com.example.helloworld.resources.ProtectedResource;
 import com.example.helloworld.resources.UserResource;
+import com.example.helloworld.resources.scheduleResource;
 import com.example.helloworld.resources.DefaultResource;
 import com.example.helloworld.resources.ViewResource;
 import com.example.helloworld.tasks.EchoTask;
@@ -139,6 +140,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         environment.jersey().register(new LAResourceID(dao2));
         environment.jersey().register(new MasterResource(dao3));
         environment.jersey().register(new UserResource(dao4));
+        environment.jersey().register(new scheduleResource());
         environment.jersey().register(new DefaultResource());
         environment.jersey().register(new FilteredResource());
     }

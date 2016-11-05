@@ -1,5 +1,4 @@
 package com.example.helloworld.core;
-import javax.validation.constraints.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

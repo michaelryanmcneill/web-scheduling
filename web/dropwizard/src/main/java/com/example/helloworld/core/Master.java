@@ -1,5 +1,4 @@
 package com.example.helloworld.core;
-import javax.validation.constraints.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,13 +22,13 @@ public class Master {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotNull
+    
     @Column(name = "day", nullable = false)
     private String day;
-    @NotNull
+    
     @Column(name = "hour", nullable = false)
     private int hour;
-    @NotNull
+
     @Column(name = "numPeople", nullable = false)
     private int numPeople;
 
