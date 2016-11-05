@@ -15,7 +15,8 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import java.util.List;
-
+import java.io.*;
+import java.io.PrintWriter;
 @Path("/hoursetter")
 @Produces(MediaType.APPLICATION_JSON)
 public class LAResource {
@@ -35,13 +36,22 @@ public class LAResource {
        // return peopleDAO.create(person);
     }
 
- 
+
 
     @GET
     @UnitOfWork
     public List<LA> listLA() {
-        return laDAO.findAll();
-    }   
-  
+       String arr = laDAO.findAll().toString();   
+       try{
+           PrintWriter writer = new PrintWriter("data/staff.json");
+           writer.println(arr);
+           writer.close();
+       }catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return  laDAO.findAll(); 
+}   
+
 
 }

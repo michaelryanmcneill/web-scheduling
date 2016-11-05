@@ -14,7 +14,8 @@ import io.dropwizard.jersey.params.LongParam;
 import javax.ws.rs.PUT;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.PathParam;
-
+import java.io.*;
+import java.io.PrintWriter;
 @Path("/master")
 @Produces(MediaType.APPLICATION_JSON)
 public class MasterResource {
@@ -31,16 +32,24 @@ public class MasterResource {
         for(int i =0 ; i < person.length; i ++){
             peopleDAO.create(person[i]);
         }
-       // return peopleDAO.create(person);
     }
 
- 
+
 
     @GET
     @UnitOfWork
     public List<Master> listPeople() {
-        return peopleDAO.findAll();
-    }   
-  
+       String arr = peopleDAO.findAll().toString();   
+       try{
+         PrintWriter writer = new PrintWriter("data/week.json");
+         writer.println(arr);
+         writer.close();
+     }catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return peopleDAO.findAll();
+}   
+
 
 }

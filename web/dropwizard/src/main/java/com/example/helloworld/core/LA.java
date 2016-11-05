@@ -124,4 +124,8 @@ public class LA {
     public void setEnd(int end) {
         this.end = end;
     }
+
+    public String toString() { 
+     return "{" + "\"id\":" + getId() + ",\"name\":" + "\"" + this.name +  "\""+",\"day\":" + "\"" + this.day +  "\""+",\"start\":" + this.start  +",\"end\":"  + this.end +",\"gender\":"+"\"" +this.gender +"\""+",\"weekStartDate\":" + "\"" + this.weekstartdate +  "\"" + ",\"hoursCapacity\":" +  this.hourscapacity + ",\"experienceLevel\":" + this.experiencelevel +"}";
+    } 
 }

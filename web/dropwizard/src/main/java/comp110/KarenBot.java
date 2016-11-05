@@ -23,7 +23,7 @@ public class KarenBot {
     this.run(scenario, trials, false);
   }
 
-  public void run(String scenario, int trials, boolean verbose) {
+  public String run(String scenario, int trials, boolean verbose) {
     SchedulingAlgo algo = _algo;
 
     // Load Data
@@ -36,7 +36,7 @@ public class KarenBot {
     } catch (IOException e) {
       e.printStackTrace();
       System.exit(1);
-      return;
+      return "failed";
     }
 
     // Verify everyone has at least 20 available shifts for scheduling
@@ -55,13 +55,14 @@ public class KarenBot {
     JSONArray json = schedule.toJSON(scenario);
     
     // Write JSON to karenbot.json
-    try {
+    /*try {
         PrintWriter writer = new PrintWriter("data/karenbot.json", "UTF-8");
         writer.println(json.toString());
         writer.close();
     } catch (Exception e) {
     	System.out.println("ERROR: Failed to write to karenbot.json");
-    }
+    }*/
+    return json.toString();
   }
 
   private void verifyHours(Staff staff, Week week) {

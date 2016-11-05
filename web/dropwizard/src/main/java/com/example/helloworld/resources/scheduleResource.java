@@ -31,12 +31,9 @@ public class scheduleResource {
     @GET
     @UnitOfWork
     public String getSchedule() {
-  //  LAResource laresource = rc.getResource(LAResource.class);
-   // laresource.listLA();
-    KarenBot karenBot = new KarenBot(new FXAlgo());
 
-    karenBot.run("11/6/2016", 100);
-     return "Success";
+    KarenBot karenBot = new KarenBot(new FXAlgo());
+    return  karenBot.run("11/6/2016", 100, false);
     }
 
 }
