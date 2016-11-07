@@ -72,7 +72,11 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
     @Override
     public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
         // Enable variable substitution with environment variables
-        bootstrap.setConfigurationSourceProvider(
+       bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html"));
+    //   bootstrap.addBundle(new AssetsBundle("/assets", "/js",  "load-events.js"));
+   //  bootstrap.addBundle(new AssetsBundle("/assets", "/js", "calendar-events.js"));
+   //   bootstrap.addBundle(new AssetsBundle("/assets", "/css", "style.css"));
+       bootstrap.setConfigurationSourceProvider(
                 new SubstitutingSourceProvider(
                         bootstrap.getConfigurationSourceProvider(),
                         new EnvironmentVariableSubstitutor(false)
@@ -80,7 +84,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         );
 
         bootstrap.addCommand(new RenderCommand());
-        bootstrap.addBundle(new AssetsBundle());
+        //bootstrap.addBundle(new AssetsBundle());
         bootstrap.addBundle(new MigrationsBundle<HelloWorldConfiguration>() {
             @Override
             public DataSourceFactory getDataSourceFactory(HelloWorldConfiguration configuration) {
@@ -109,7 +113,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
         // Add URL mapping
         cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-
+        environment.jersey().setUrlPattern("/api/*");
         final PersonDAO dao = new PersonDAO(hibernateBundle.getSessionFactory());
         final LADAO dao2 = new LADAO(hibernateBundle.getSessionFactory());
         final MasterDAO dao3 = new MasterDAO(hibernateBundle.getSessionFactory());
@@ -141,7 +145,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         environment.jersey().register(new MasterResource(dao3));
         environment.jersey().register(new UserResource(dao4));
         environment.jersey().register(new scheduleResource());
-        environment.jersey().register(new DefaultResource());
+       // environment.jersey().register(new DefaultResource());
         environment.jersey().register(new FilteredResource());
     }
 }
