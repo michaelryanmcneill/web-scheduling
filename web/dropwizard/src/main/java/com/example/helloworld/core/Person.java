@@ -42,8 +42,8 @@ public class Person {
     }
 
     public Person(String name, String day, int start, int end, String weekstartdate) {
-        this.name = name;
-        this.day= day;
+    this.name = name;
+    this.day= day;
 	this.end = end;
 	this.weekstartdate=weekstartdate;
 	this.start = start;
@@ -68,8 +68,8 @@ public class Person {
         return weekstartdate;
     }
 
-    public void setFullName(String fullName) {
-        this.name = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDay() {
