@@ -6,6 +6,15 @@ Running dropwizard (requires java >= 1.8.0):
 $ cd dropwizard
 $ java -jar target/dropwizard-example-1.0.1-SNAPSHOT.jar server example.yml
 
+
+API CALLS
+
+$ /api/people
+$ /api/hoursetter
+$ /api/master
+$ /api/schedule
+$ /api/userDatabase
+
 Polling information from dropwizard (curl):
 $ curl http://localhost:8080/hello-world
 
