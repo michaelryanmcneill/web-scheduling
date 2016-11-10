@@ -33,7 +33,7 @@ public class scheduleResource {
     public String getSchedule() {
 
     KarenBot karenBot = new KarenBot(new FXAlgo());
-    return  karenBot.run("11/6/2016", 100, false);
+    return  karenBot.run("11/13/2016", 100, false);
     }
 
 }
