@@ -1,6 +1,50 @@
 var ALL_SCHEDULES = null;
 var DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
+function runKarenBot() {
+	// Copy appropriate JSON files from database
+	console.log('http://' + DROPWIZARD_IP + ':8080/api/hoursetter/');
+	$.getJSON('http://' + DROPWIZARD_IP + ':8080/api/hoursetter/copytoJson', function() {
+		//$.getJSON('http://' + DROPWIZARD_IP + ':8080/api/master/copytoJson');
+
+		// Run KarenBot by issuing a GET request to the dropwizard server
+		$.getJSON('http://' + DROPWIZARD_IP + ':8080/api/schedule', function(data) {
+			// Post schedule to database
+			$.ajax({
+	        	headers: {
+	        		'Accept': 'application/json',
+	        		'Content-Type': 'application/json'
+	        	},
+	        	type: 'POST',
+	        	url: 'http://' + DROPWIZARD_IP + ':8080/api/people',
+	        	data: JSON.stringify(data),
+	        	dataType: 'json',
+	        	success: function() {
+	        		alert('Schedule successfully generated!');
+	        	}
+	        });
+		});
+	});
+
+	// Run KarenBot by issuing a GET request to the dropwizard server
+	$.getJSON('http://' + DROPWIZARD_IP + ':8080/api/schedule', function(data) {
+		// Post schedule to database
+		$.ajax({
+        	headers: {
+        		'Accept': 'application/json',
+        		'Content-Type': 'application/json'
+        	},
+        	type: 'POST',
+        	url: 'http://' + DROPWIZARD_IP + ':8080/api/people',
+        	data: JSON.stringify(data),
+        	dataType: 'json',
+        	success: function() {
+        		alert('Schedule successfully generated!');
+        	}
+        });
+	});
+}
+
 function configureScheduler() {
 	// Configure/initialize "scheduler" tool
 	scheduler.config.first_hour = 10;
