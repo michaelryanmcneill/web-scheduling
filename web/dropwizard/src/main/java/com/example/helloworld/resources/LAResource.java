@@ -36,11 +36,10 @@ public class LAResource {
        // return peopleDAO.create(person);
     }
 
-
-
     @GET
     @UnitOfWork
-    public List<LA> listLA() {
+     @Path("/{copy}")
+    public String copylistLA(@PathParam("copy") final String copy) {
        String arr = laDAO.findAll().toString();   
        try{
            PrintWriter writer = new PrintWriter("data/staff.json");
@@ -50,8 +49,14 @@ public class LAResource {
         e.printStackTrace();
     }
 
-    return  laDAO.findAll(); 
+    return  "success"; 
 }   
+
+    @GET
+    @UnitOfWork
+    public List<LA> listLA() {
+    return  laDAO.findAll(); 
+} 
 
 
 }
