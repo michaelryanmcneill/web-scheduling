@@ -1,4 +1,3 @@
-
 var ALL_SCHEDULES = null;
 var DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
@@ -119,7 +118,7 @@ $(document).ready(function() {
 	configureScheduler();
 
 	// Query database and build schedule
-	$.getJSON('http://localhost:8080/api/people', function(data) {
+	$.getJSON('http://' + DROPWIZARD_IP + ':8080/api/people', function(data) {
 		buildSchedulesFromDatabaseJSON(data);
 		renderAllSchedules();
 	});

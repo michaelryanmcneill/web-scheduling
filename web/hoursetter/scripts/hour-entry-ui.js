@@ -163,7 +163,7 @@ var HourSelectTable = React.createClass({
         		'Content-Type': 'application/json'
         	},
         	type: 'POST',
-        	url: 'http://localhost:8080/hoursetter',
+        	url: 'http://' + DROPWIZARD_IP + ':8080/api/hoursetter',
         	data: JSON.stringify(shifts),
         	dataType: 'json',
         	success: function() {
