@@ -36,21 +36,6 @@ public class LAResource {
        // return peopleDAO.create(person);
     }
 
-    @GET
-    @UnitOfWork
-     @Path("/{copy}")
-    public String copylistLA(@PathParam("copy") final String copy) {
-       String arr = laDAO.findAll().toString();   
-       try{
-           PrintWriter writer = new PrintWriter("data/staff.json");
-           writer.println(arr);
-           writer.close();
-       }catch (IOException e) {
-        e.printStackTrace();
-    }
-
-    return  "success"; 
-}   
 
     @GET
     @UnitOfWork

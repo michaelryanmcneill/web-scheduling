@@ -60,6 +60,7 @@ comp110\youngjt\TutorialAlgo.class
 com\example\helloworld\HelloWorldConfiguration.class
 comp110\youngjt\WhoIsAvailable.class
 comp110\krisj\PostProcessor.class
+com\example\helloworld\resources\LAResourceCopyJson.class
 com\example\helloworld\resources\scheduleResource.class
 comp110\sfirrin\ChunkList.class
 com\example\helloworld\filter\DateRequired.class
@@ -81,6 +82,7 @@ comp110\FXCrew\ChunkList.class
 org\json\JSONException.class
 com\example\helloworld\resources\UserResource.class
 org\json\JSONString.class
+com\example\helloworld\resources\MasterResourceCopyJson.class
 comp110\sfirrin\Chunk.class
 org\json\JSONTokener.class
 com\example\helloworld\HelloWorldApplication$3.class
