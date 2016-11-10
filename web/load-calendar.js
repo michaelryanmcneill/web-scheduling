@@ -119,7 +119,7 @@ $(document).ready(function() {
 	configureScheduler();
 
 	// Query database and build schedule
-	$.getJSON('http://localhost:8080/people', function(data) {
+	$.getJSON('http://localhost:8080/api/people', function(data) {
 		buildSchedulesFromDatabaseJSON(data);
 		renderAllSchedules();
 	});
