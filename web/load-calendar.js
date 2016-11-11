@@ -70,7 +70,7 @@ function constructWorkerData(worker_name, date, hour_ranges) {
 		data.push({
 			text: worker_name,
 			start_date: date + ' ' + hour_range.start,
-			end_date: date + ' ' + (hour_range.end - 1)
+			end_date: date + ' ' + hour_range.end
 		});
 	}
 
@@ -155,6 +155,7 @@ $(document).ready(function() {
 
 	// Query database and build schedule
 	$.getJSON('http://' + DROPWIZARD_IP + ':8080/api/people', function(data) {
+		console.log(data);
 		buildSchedulesFromDatabaseJSON(data);
 		renderAllSchedules();
 	});
