@@ -93,11 +93,6 @@
             </column>
         </createTable>
 
-         <insert tableName="userTable">
-            <column name="id" value="1"/>
-            <column name="name" value="ervin"/>
-            <column name="role" value="admin">
-            <column name="password" value="p@ssw0rd"/>
-        </insert>
+       
     </changeSet>
 </databaseChangeLog>
