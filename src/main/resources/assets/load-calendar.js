@@ -3,21 +3,19 @@ var DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
 function runKarenBot() {
 	// Copy appropriate JSON files from database
-	console.log('http://' + DROPWIZARD_IP + ':8080/api/hoursetter/copytoJson');
-
 	$.ajax({
     	headers: {
     		'Accept': 'application/json',
     		'Content-Type': 'application/json'
     	},
     	type: 'GET',
-    	url: 'http://' + DROPWIZARD_IP + ':8080/api/hoursetter/copytoJson',
+    	url: '/api/hoursetter/copytoJson',
     	dataType: 'text',
     	success: function() {
 			//$.getJSON('http://' + DROPWIZARD_IP + ':8080/api/master/copytoJson');
 
 			// Run KarenBot by issuing a GET request to the dropwizard server
-			$.getJSON('http://' + DROPWIZARD_IP + ':8080/api/schedule', function(data) {
+			$.getJSON('api/schedule', function(data) {
 				// Post schedule to database
 				$.ajax({
 		        	headers: {
@@ -25,7 +23,7 @@ function runKarenBot() {
 		        		'Content-Type': 'application/json'
 		        	},
 		        	type: 'POST',
-		        	url: 'http://' + DROPWIZARD_IP + ':8080/api/people',
+		        	url: '/api/people',
 		        	data: JSON.stringify(data),
 		        	dataType: 'json',
 		        	success: function() {
@@ -154,7 +152,7 @@ $(document).ready(function() {
 	configureScheduler();
 
 	// Query database and build schedule
-	$.getJSON('http://' + DROPWIZARD_IP + ':8080/api/people', function(data) {
+	$.getJSON('api/people', function(data) {
 		console.log(data);
 		buildSchedulesFromDatabaseJSON(data);
 		renderAllSchedules();
