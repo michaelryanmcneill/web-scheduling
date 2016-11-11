@@ -148,7 +148,7 @@ var HourSelectTable = React.createClass({
                                 weekStartDate: workableHours.week_start_date,
                                 day: day.toString(),
                                 start:_start,
-                                end:_end - 1
+                                end:_end
                             });
                         }
 
