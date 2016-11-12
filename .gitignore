@@ -1,2 +1,4 @@
 /bin/
 **/.DS_STORE
+.settings
+dependency-reduced-pom.xml

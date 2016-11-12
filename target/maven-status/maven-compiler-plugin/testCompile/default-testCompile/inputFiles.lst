@@ -1,2 +1,2 @@
-/afs/cs.unc.edu/home/rogowski/dropwizard/src/test/java/com/example/helloworld/db/PersonDAOTest.java
-/afs/cs.unc.edu/home/rogowski/dropwizard/src/test/java/com/example/helloworld/resources/PersonResourceTest.java
+/Users/rogowski/web-scheduling/src/test/java/com/example/helloworld/resources/PersonResourceTest.java
+/Users/rogowski/web-scheduling/src/test/java/com/example/helloworld/db/PersonDAOTest.java

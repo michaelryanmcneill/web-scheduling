@@ -1,3 +1,8 @@
+# Building Docker Image
+```
+docker build -t comp110/web-scheduling ~/web-scheduling/
+```
+
 # Introduction
 
 The Dropwizard example application was developed to, as its name implies, provide examples of some of the features
