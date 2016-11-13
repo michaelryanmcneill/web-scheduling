@@ -1,4 +1,4 @@
 #!/bin/bash
 
-java -jar target/dropwizard-example-1.0.1-SNAPSHOT.jar db drop-all --confirm-delete-everything example.yml
-java -jar target/dropwizard-example-1.0.1-SNAPSHOT.jar db migrate example.yml
+java -jar target/dropwizard-example-1.1.0-SNAPSHOT.jar db drop-all --confirm-delete-everything example.yml
+java -jar target/dropwizard-example-1.1.0-SNAPSHOT.jar db migrate example.yml
