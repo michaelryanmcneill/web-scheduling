@@ -59,3 +59,4 @@ To test the example application run the following commands.
 * how to delete/drop and add database.
 	http://www.dropwizard.io/0.7.1/docs/manual/migrations.html
 	open http://localhost:8080/people
+# dockertest
